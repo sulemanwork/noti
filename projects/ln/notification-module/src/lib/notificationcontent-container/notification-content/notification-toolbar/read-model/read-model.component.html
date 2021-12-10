@@ -1,0 +1,19 @@
+<aside role="dialog" class="gvs-dialog small">
+    <header role="banner" class="dialog-header">
+        <h1 class="dialog-headline" tabindex="0">Dialog</h1>
+        <nav class="dialog-close"></nav>
+    </header>
+
+    <form id="dialog-content" class="modal-dialog-body notranslate dialog-content" novalidate="novalidate" role="form">
+        <section class="actiondialog-content dialogcontent" data-selectedvalue="delete">
+            <label class="dialoglabel">Are you sure you want to mark all the notifications as read?            </label>
+             </section>
+    </form>
+
+    <footer class="dialog-footer">
+        <div class="button-group">
+            <button type="submit" class="button primary" data-action="confirm" (click)="readAll(commonModelContent)">Submit</button>
+            <button class="button secondary" data-action="cancel" (click)="exitModel()">Cancel</button>
+        </div>
+    </footer>
+</aside>

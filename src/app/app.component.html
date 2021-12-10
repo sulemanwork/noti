@@ -1,0 +1,30 @@
+<notification-container>
+  <p>heading area</p> 
+
+  <notificationcontent-container>
+    <div class="wrapper panel pagewrapper bg-light">
+      <div class="master-detail">
+        <div class="master-pane">
+          <div class="search-controls filter_text_medium">
+            <p>sidebar</p>
+          </div>
+        </div>
+        <div class="detail-pane">
+          <notification-content>
+            <div class="resultListheader">
+              <h2>
+                  Notification ({{ notification.length }})
+              </h2>
+            </div>
+            <notification-toolbar  [notification]="notification" (sortByValues)="sortByValues($event)" (checkboxSelectedAll)="selectAllCheckboxes($event)" [selectItem]="selectItem"></notification-toolbar>
+            <notification-row [notification]="notification" [selectAll]="selectAll" (selectedrow)="selectedrow($event)"></notification-row>
+            
+            <pagination></pagination>
+
+          </notification-content>
+        </div>
+      </div>
+    </div>
+  </notificationcontent-container>
+</notification-container>
+<router-outlet></router-outlet>

@@ -1,0 +1,112 @@
+<div class="toolbar-gvs" role="toolbar">
+    <div>
+        <ul>
+            <li class="hideInMobile has_tooltip checkbox select-all">
+                <input type="checkbox" data-action="selectall" (click)="selectAll()">
+                <span class="tooltip" role="tooltip">Select all items on this page</span>
+            </li>
+            <li class="selected" *ngIf="selectItem.length != 0" >
+                <div class="dropdown">
+                    <label>
+                        <span class="select">{{ selectItem.length }}</span>
+                        <span class="select more">SELECTED</span>
+                    </label>
+                </div>
+            </li>
+            <li>
+                <button type="button" class="has_tooltip" data-action="delete" disabled="disabled" aria-label="Delete">
+                    <span class="icon la-Delete"></span>
+                    <span class="tooltip" role="tooltip">Delete selected</span>
+                </button>
+            </li>
+            <li class="dropdown-toggle">
+                <div class="dropdown" [class.active]="moreValueToggle">
+                    <span class="mobileWhiteRectangle"></span>
+                    <button class="dropdown-toggle more" (click)="moreToggle()">
+                        <span>More</span>
+                        <span role="tooltip" class="tooltip">More Actions</span>
+                        <span class="icon la-TriangleDown"></span>
+                    </button>
+                    <div class="more dropdown-menu noscroll">
+                        <ul>
+                            <li>
+                                <button type="button"  class="icon action la-Delete" aria-label="Delete all notifications" (click)="deleteAllButtonClicked(notification)">
+                                    <span>Delete all notifications</span>
+                                    <span class="tooltip" role="tooltip">Delete all notifications</span>
+                                </button>
+                            </li>
+    
+                            <li>
+                                <button type="button" data-action="markasread" data-sticky="true" class="icon action la-Document" aria-label="Mark selected as read" disabled="">
+                                    <span>Mark selected as read</span>
+                                    <span class="tooltip" role="tooltip">Mark selected as read</span>
+                                </button>
+                            </li>
+    
+                            <li>
+                                <button type="button" data-action="markasreadall" data-sticky="true" class="icon action la-CopyToFolder" aria-label="Mark all notifications as read" (click)="markAllRead(notification)">
+                                    <span>Mark all notifications as read</span>
+                                    <span class="tooltip" role="tooltip">Mark all notifications as read</span>
+                                </button>
+                            </li>
+    
+                            <li>
+                                <button type="button" data-action="markasunread" data-sticky="true" class="icon action la-MarkSelected" disabled="" aria-label="Mark selected as unread">
+                                    <span>Mark selected as unread</span>
+                                    <span class="tooltip" role="tooltip">Mark selected as unread</span>
+                                </button>
+                            </li>
+    
+                            <li>
+                                <button type="button" data-action="markasunreadall" data-sticky="true" class="icon action la-MarkAll" aria-label="Mark all notifications as unread" (click)="markAllUnRead(notification)">
+                                    <span>Mark all notifications as unread</span>
+                                    <span class="tooltip" role="tooltip">Mark all notifications as unread</span>
+                                </button>
+                            </li>
+    
+                            <li>
+                                <button type="button" data-action="print" data-sticky="true" class="icon action la-PrintablePage" aria-label="Printer-friendly view">
+                                    <span>Printer-friendly view</span>
+                                    <span class="tooltip" role="tooltip">Printer-friendly view</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li class="rightAlign" data-menu="sortby">
+                <span id="toolbar.sortby.label" class="rightPadding hideInMobile">Sort by:</span>
+                <div class="dropdown" [class.active]="sortValueToggle">
+                    <button (click)="sortToggle()" class="dropdown-toggle fixedWidth" data-action="sortby" type="button" aria-labelledby="toolbar.sortby.label sortbymenulabel" aria-expanded="false">
+                        <span id="sortbymenulabel">{{ selectValue }}</span>
+                            <span class="icon la-TriangleDown"></span>
+                            <span class="icon la-SortBy"></span>
+                            </button>
+                            <div class="dropdown-menu noscroll noWidth rightAligned">
+                                <button type="button" (click)="sortData('dateNew','Date (newest)')">Date (newest)</button>
+                                <button type="button" (click)="sortData('dateOld','Date (oldest)')">Date (oldest)</button>
+                                <button type="button" (click)="sortData('eventAsc','Event (A-Z)')">Event (A-Z)</button>
+                                <button type="button" (click)="sortData('eventDesc','Event (Z-A)')">Event (Z-A)</button>
+                            </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="overlay dialog-overlay" [hidden]="!overlay"></div>
+
+<div [hidden]="!modelExit">
+  <div *ngIf="readModelShow">
+      <read-model [commonModelContent]="commonModelContent" (modelExit)="exitModel($event)" (readAllDataValues)="readAllDataValues($event)"></read-model>
+  </div>
+  <div *ngIf="deleteModelShow">
+     <delete-model [commonModelContent]="commonModelContent" (modelExit)="exitModel($event)"  (deletingDataValues)="deletingDataValues($event)"></delete-model>
+  </div>
+  <!-- <div *ngIf="editModelShow">
+     <edit-model [editModelContent]="editModelContent" (modelExit)="exitModel($event)"></edit-model>
+  </div> -->
+</div> 

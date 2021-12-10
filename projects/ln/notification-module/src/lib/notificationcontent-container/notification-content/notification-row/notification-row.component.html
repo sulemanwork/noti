@@ -1,0 +1,40 @@
+<div class="wrapper">
+    <ol class="group">
+        <li *ngFor="let notification of notification, let i = index ">
+            <span class="listnumber">
+                <p>{{ i + 1 }}.</p>
+            </span>
+
+            <label for="{{ notification.id }}">
+                <input type="checkbox" id="{{ notification.id }}" class="tools-toggle" aria-label="Select this item for further action (e.g., Mark read, Mark unread, Delete)"  [checked]="selectAll" (click)="getSeletedValue($event, notification)"/>
+            </label>
+
+            <span class="icon bluedot {{ notification.read === true ? '' : 'la-NewUpdates' }} " type="button" tabindex="-1" > </span>
+            <div>
+                <h2 class="doc-title caution">
+                    <!--Alerts ,history, workfolders  events-->
+                    <span role="button" tabindex="0">
+                        {{ notification.topic }}
+                    </span>
+                </h2>
+                <div class="result">
+                    <div class="item">
+                        <!--Alerts ,history, workfolders  events-->
+
+                        <span role="button" tabindex="0">View remaining items </span>
+
+                        <a href="#" data-action="workfolders">{{ notification.frequency }} </a>
+                    </div>
+                    <div class="metadata">
+                        <div class="datemargin">
+                            {{notification.createdDate | date:'long'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ol>
+</div>
+
+
+
